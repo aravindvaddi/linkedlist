@@ -19,6 +19,41 @@ int ll_length (ll *list)
 	return i;
 }
 
+/* function to return address of a node for the first occurance of a given value */
+
+node *ll_search (ll *list, int data)
+{
+	node *temp = NULL;
+
+	if(list)
+	{
+		temp = list->head;
+		while(temp && temp->data != data)
+			temp = temp->next;
+	}
+
+	return temp;
+}
+
+/* function to return address of a node at given position */
+
+node *ll_address (ll *list, int position)
+{
+	node *temp = NULL;
+
+	if(list)
+	{
+		temp = list->head;
+		while(temp && position)
+		{
+			temp = temp->next;
+			position--;
+		}
+	}
+
+	return temp;
+}
+
 /* function to traverse and print linkedlist */
 
 void ll_print (ll *list)
