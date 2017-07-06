@@ -24,10 +24,9 @@ node *ll_address (ll *list, int position);
 node *ll_node (int data);
 
 void ll_print (ll *list);
-void ll_r_print(ll *list);
+void ll_reverse_print (ll *list);
 void ll_reverse (ll *list);
 void ll_r_reverse (ll *list);
-void ll_reverse_print (ll *list);
 
 /* linkedlist core */
 

@@ -5,7 +5,7 @@ int main()
 {
 	int i;
 	int a[] = {1, 50, 0, 6};
-	ll *list = NULL;
+	ll *list = NULL, *rand_list = NULL;
 
 	ll_create(&list);
 
@@ -40,6 +40,12 @@ int main()
 		printf("Length: %d\n", ll_length(list));
 		ll_print(list);
 	}
+
+	ll_generate_random (&rand_list, 20, 75);
+	printf("Random list below, length = %d\n", ll_length(rand_list));
+	ll_print(rand_list);
+	printf("Random list, reverse print\n");
+	ll_reverse_print(rand_list);
 
 	return 0;
 }

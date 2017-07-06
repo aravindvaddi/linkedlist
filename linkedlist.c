@@ -64,6 +64,25 @@ void ll_print (ll *list)
 	}
 }
 
+/* core function to print linkedlist in reverse (helper function to function) */
+
+void lib_reverseprint (node *head)
+{
+	if(head)
+	{
+		lib_reverseprint(head->next);
+		printf("%d ", head->data);
+	}
+}
+
+/* function to print linkedlist in reverse */
+
+void ll_reverse_print (ll *list)
+{
+	lib_reverseprint (list->head);
+	printf("\n");
+}
+
 /* function to check if linkedlist is empty */
 
 int ll_empty(ll *list)
@@ -154,4 +173,18 @@ void ll_create (ll **ref)
 	*ref = malloc(sizeof **ref);
 	(*ref)->head = (*ref)->tail = NULL;
 	(*ref)->length = -1;
+}
+
+/* function to generate a random linkedlist */
+
+void ll_generate_random (ll **ref, int length, int range)
+{
+	int i;
+
+	ll_create(ref);
+	srand(time(NULL));
+
+	for(i = 0; i < length; i++)
+		ll_f_insert (*ref, rand() % range);
+
 }
