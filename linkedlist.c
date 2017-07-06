@@ -89,7 +89,7 @@ void ll_e_insert (ll *list, int data)
 		{
 			temp = ll_node(data);
 			list->tail->next = temp;
-			tail = tail->next;
+			list->tail = list->tail->next;
 		}
 	}
 }
