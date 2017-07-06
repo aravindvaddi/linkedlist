@@ -124,6 +124,29 @@ void ll_e_insert (ll *list, int data)
 	}
 }
 
+/* function to insert at a given position */
+
+void ll_p_insert (ll *list, int data, int position)
+{
+	node *temp, *prev;
+	if(list)
+	{
+		if(position == 0)
+			ll_f_insert (list, data);
+		else if(position > ll_length(list))
+			ll_e_insert (list, data);
+		else
+		{
+			temp = ll_node(data);
+			prev = ll_address (list, position - 1);
+			temp->next = prev->next;
+			prev->next = temp;
+			list->length++;
+		}
+	}
+}
+
+
 /* function to initialize linkedlist to a given pointer */
 
 void ll_create (ll **ref)

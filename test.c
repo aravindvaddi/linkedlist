@@ -4,6 +4,7 @@
 int main()
 {
 	int i;
+	int a[] = {1, 50, 0, 6};
 	ll *list = NULL;
 
 	ll_create(&list);
@@ -25,6 +26,19 @@ int main()
 			printf("Length: %d\n", ll_length(list));
 			ll_print(list);
 		}
+	}
+
+	printf("Address function testing:\n");
+	for(i = 0; i < ll_length(list); i++)
+		printf("%d ", ll_address(list, i)->data);
+	printf("\n");
+
+	for(i = 0; i < 4; i++)
+	{
+		printf("Inserting at %d position\n", a[i]);
+		ll_p_insert(list, a[i] + 20, a[i]);
+		printf("Length: %d\n", ll_length(list));
+		ll_print(list);
 	}
 
 	return 0;
