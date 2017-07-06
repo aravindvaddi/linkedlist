@@ -11,6 +11,7 @@ struct linkedlist
 {
 	struct node *head;
 	struct node *tail;
+	int length;
 };
 
 typedef struct node node;

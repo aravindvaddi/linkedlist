@@ -7,16 +7,7 @@
 
 int ll_length (ll *list)
 {
-	int i;
-	node *temp;
-
-	if(list)
-	{
-		temp = list->head;
-		for(i = 0; temp; i++, temp = temp->next);
-	}
-
-	return i;
+	return list->length + 1;
 }
 
 /* function to return address of a node for the first occurance of a given value */
@@ -108,6 +99,8 @@ void ll_f_insert (ll *list, int data)
 			list->head = list->tail = temp;
 		else
 			list->head = temp;
+
+		list->length++;
 	}
 }
 
@@ -125,7 +118,9 @@ void ll_e_insert (ll *list, int data)
 			temp = ll_node(data);
 			list->tail->next = temp;
 			list->tail = list->tail->next;
+			list->length++;
 		}
+
 	}
 }
 
@@ -135,4 +130,5 @@ void ll_create (ll **ref)
 {
 	*ref = malloc(sizeof **ref);
 	(*ref)->head = (*ref)->tail = NULL;
+	(*ref)->length = -1;
 }
