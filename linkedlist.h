@@ -11,6 +11,7 @@ struct linkedlist
 {
 	struct node *head;
 	struct node *tail;
+	/* holds the last position of the linkedlist */
 	int length;
 };
 
@@ -45,6 +46,6 @@ int ll_length (ll *list);
 
 void ll_create (ll **ref);
 void ll_destroy (ll **ref);
-void ll_generate_random (ll **ref, int length, int range);
+void ll_generate_random (ll *list, int length, int range);
 
 #endif

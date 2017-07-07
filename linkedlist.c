@@ -7,6 +7,7 @@
 
 int ll_length (ll *list)
 {
+	/* function returns the number of elements in the list */
 	return list->length + 1;
 }
 
@@ -97,7 +98,7 @@ node *ll_node (int data)
 {
 	node *temp;
 
-	temp = malloc(sizeof *temp);
+	temp = malloc(sizeof(node));
 	temp->data = data;
 	temp->next = NULL;
 
@@ -108,7 +109,7 @@ node *ll_node (int data)
 
 void ll_f_insert (ll *list, int data)
 {
-	node *temp;
+	node *temp = NULL;
 	if(list)
 	{
 		temp = ll_node(data);
@@ -148,11 +149,11 @@ void ll_e_insert (ll *list, int data)
 void ll_p_insert (ll *list, int data, int position)
 {
 	node *temp, *prev;
-	if(list)
+	if(list && position <= ll_length(list))
 	{
 		if(position == 0)
 			ll_f_insert (list, data);
-		else if(position > ll_length(list))
+		else if(position = ll_length(list))
 			ll_e_insert (list, data);
 		else
 		{
@@ -165,6 +166,52 @@ void ll_p_insert (ll *list, int data, int position)
 	}
 }
 
+/* function to remove node at front of the list */
+
+void ll_f_remove (ll *list)
+{
+	ll_p_remove(list, 0);
+}
+
+/* function to remove node at the end of the list */
+
+void ll_e_remove (ll *list)
+{
+	ll_p_remove (list, list->length);
+}
+
+/* function to remove node at a given position */
+
+void ll_p_remove (ll *list, int position)
+{
+	node *temp, *prev;
+
+	if(list && !ll_empty(list) && position <= ll_length(list) - 1)
+	{
+		if(position == 0)
+		{
+			temp = list->head;
+			if(ll_length(list) == 1)
+				list->head = list->tail = NULL;
+			else
+				list->head = list->head->next;
+		}
+		else
+		{
+			prev = ll_address(list, position - 1);
+			temp = prev->next;
+			prev->next = prev->next->next;
+			if(prev->next == NULL)
+				list->tail = prev;
+		}
+
+		temp->data = 0;
+		temp->next = NULL;
+		free(temp);
+		temp = NULL;
+		list->length--;
+	}
+}
 
 /* function to initialize linkedlist to a given pointer */
 
@@ -177,14 +224,26 @@ void ll_create (ll **ref)
 
 /* function to generate a random linkedlist */
 
-void ll_generate_random (ll **ref, int length, int range)
+void ll_generate_random (ll *list, int length, int range)
 {
 	int i;
 
-	ll_create(ref);
-	srand(time(NULL));
+	if(list)
+	{
+		srand(time(NULL));
 
-	for(i = 0; i < length; i++)
-		ll_f_insert (*ref, rand() % range);
+		for(i = 0; i < length; i++)
+			ll_f_insert (list, rand() % range);
+	}
+}
 
+/* function to destroy a linked list with a given reference to the list */
+
+void ll_destroy (ll **ref)
+{
+	while(!ll_empty(*ref))
+		ll_f_remove (*ref);
+
+	free(*ref);
+	*ref = NULL;
 }
