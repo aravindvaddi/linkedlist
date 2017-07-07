@@ -20,6 +20,8 @@ typedef struct linkedlist ll;
 
 /* linketlist helper functions */
 
+int ll_position (ll *list, int data);
+int ll_data (ll *list, int position);
 node *ll_search (ll *list, int data);
 node *ll_address (ll *list, int position);
 node *ll_node (int data);

@@ -11,6 +11,38 @@ int ll_length (ll *list)
 	return list->length + 1;
 }
 
+/* function to return position of an element with a given data */
+
+int ll_position (ll *list, int data)
+{
+	node *temp;
+	int position;
+
+	if(list)
+	{
+		temp = list->head;
+		if(temp)
+		{
+			for(position = 0; temp && temp->data != data; position++)
+				temp = temp->next;
+			if(position < ll_length(list));
+				return position;
+		}
+	}
+	return -1;
+}
+
+/* function to return data of an element at a given position */
+
+int ll_data (ll *list, int position)
+{
+	node *temp = ll_address(list, position);
+	if(temp)
+		return temp->data;
+	else
+		return -1;
+}
+
 /* function to return address of a node for the first occurance of a given value */
 
 node *ll_search (ll *list, int data)
@@ -212,6 +244,22 @@ void ll_p_remove (ll *list, int position)
 		list->length--;
 	}
 }
+
+/* function to remove node if the node's data is given */
+
+void ll_d_remove (ll *list, int data)
+{
+	int position;
+	node *temp;
+
+	if(list)
+	{
+		position = ll_position (list, data);
+		if(position >= 0 && position < ll_length(list))
+			ll_p_remove (list, position);
+	}
+}
+
 
 /* function to initialize linkedlist to a given pointer */
 
