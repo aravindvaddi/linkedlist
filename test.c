@@ -93,6 +93,21 @@ int main()
 	printf("Length: %d\n", ll_length(list));
 	ll_print(list);
 
+	/* testing linkedlist reverse function */
+	printf("list\n");
+	printf("Address before head: %p tail: %p\n", list->head, list->tail);
+	ll_print(list);
+	ll_reverse(list);
+	printf("Address after head: %p tail: %p\n", list->head, list->tail);
+	ll_print(list);
+
+	printf("rand_list\n");
+	printf("Address before head: %p tail: %p\n", rand_list->head, rand_list->tail);
+	ll_print(rand_list);
+	ll_reverse(rand_list);
+	printf("Address after head: %p tail: %p\n", rand_list->head, rand_list->tail);
+	ll_print(rand_list);
+
 	/* testing 	linkedlist destroy function */
 	ll_destroy (&list);
 	ll_destroy (&rand_list);

@@ -116,6 +116,28 @@ void ll_reverse_print (ll *list)
 	printf("\n");
 }
 
+/* function to reverse a linkedlist */
+
+void ll_reverse (ll *list)
+{
+	node *prev, *curr, *next;
+	if(list)
+	{
+		curr = list->head;
+		prev = NULL;
+
+		while(curr)
+		{
+			next = curr->next;
+			curr->next = prev;
+			prev = curr;
+			curr = next;
+		}
+		list->tail = list->head;
+		list->head = prev;
+	}
+}
+
 /* function to check if linkedlist is empty */
 
 int ll_empty(ll *list)
